@@ -1,5 +1,5 @@
-# Food
-type Food {
+# Menu
+type Menu {
   id: Int!
   title: String!
   content: String!
@@ -12,40 +12,40 @@ type Review {
   content: String!
 }
 
-# Edges for Foods
-type FoodEdges {
-  node: Food
+# Edges for Menus
+type MenuEdges {
+  node: Menu
   cursor: Int
 }
 
-# PageInfo for Foods
-type FoodPageInfo {
+# PageInfo for Menus
+type MenuPageInfo {
   endCursor: Int
   hasNextPage: Boolean
 }
 
-# Foods relay-style pagination query
-type Foods {
+# Menus relay-style pagination query
+type Menus {
   totalCount: Int
-  edges: [FoodEdges]
-  pageInfo: FoodPageInfo
+  edges: [MenuEdges]
+  pageInfo: MenuPageInfo
 }
 
 extend type Query {
-  # Foods pagination query
-  foods(limit: Int, after: Int): Foods
-  # Food
-  food(id: Int!): Food
+  # Menus pagination query
+  menus(limit: Int, after: Int): Menus
+  # Menu
+  menu(id: Int!): Menu
 }
 
 extend type Mutation {
-  # Create new food
-  addFood(input: AddFoodInput!): Food
-  # Delete a food
-  deleteFood(id: Int!): Food
-  # Edit a food
-  editFood(input: EditFoodInput!): Food
-  # Add review to food
+  # Create new menu
+  addMenu(input: AddMenuInput!): Menu
+  # Delete a menu
+  deleteMenu(id: Int!): Menu
+  # Edit a menu
+  editMenu(input: EditMenuInput!): Menu
+  # Add review to menu
   addReview(input: AddReviewInput!): Review
   # Delete a review
   deleteReview(input: DeleteReviewInput!): Review
@@ -53,14 +53,14 @@ extend type Mutation {
   editReview(input: EditReviewInput!): Review
 }
 
-# Input for addFood Mutation
-input AddFoodInput {
+# Input for addMenu Mutation
+input AddMenuInput {
   title: String!
   content: String!
 }
 
-# Input for editFood Mutation
-input EditFoodInput {
+# Input for editMenu Mutation
+input EditMenuInput {
   id: Int!
   title: String!
   content: String!
@@ -70,14 +70,14 @@ input EditFoodInput {
 input AddReviewInput {
   content: String!
   # Needed for reviewUpdated Subscription filter
-  foodId: Int!
+  menuId: Int!
 }
 
 # Input for editReview Mutation
 input DeleteReviewInput {
   id: Int!
   # Needed for reviewUpdated Subscription filter
-  foodId: Int!
+  menuId: Int!
 }
 
 # Input for deleteReview Mutation
@@ -85,29 +85,29 @@ input EditReviewInput {
   id: Int!
   content: String!
   # Needed for reviewUpdated Subscription filter
-  foodId: Int!
+  menuId: Int!
 }
 
 extend type Subscription {
-  # Subscription for when editing a food
-  foodUpdated(id: Int!): Food
-  # Subscription for food list
-  foodsUpdated(endCursor: Int!): UpdateFoodPayload
+  # Subscription for when editing a menu
+  menuUpdated(id: Int!): Menu
+  # Subscription for menu list
+  menusUpdated(endCursor: Int!): UpdateMenuPayload
   # Subscription for reviews
-  reviewUpdated(foodId: Int!): UpdateReviewPayload
+  reviewUpdated(menuId: Int!): UpdateReviewPayload
 }
 
-# Payload for foodsUpdated Subscription
-type UpdateFoodPayload {
+# Payload for menusUpdated Subscription
+type UpdateMenuPayload {
   mutation: String!
   id: Int!
-  node: Food
+  node: Menu
 }
 
 # Payload for reviewUpdated Subscription
 type UpdateReviewPayload {
   mutation: String!
   id: Int
-  foodId: Int!
+  menuId: Int!
   node: Review
 }

@@ -1,8 +1,8 @@
 import { orderedFor } from '../../sql/helpers';
 import knex from '../../sql/connector';
 
-export default class Post {
-  foodsPagination(limit, after) {
+export default class Menu {
+  menusPagination(limit, after) {
     let where = '';
     if (after > 0) {
       where = `id < ${after}`;
@@ -10,56 +10,56 @@ export default class Post {
 
     return knex
       .select('id', 'title', 'content')
-      .from('food')
+      .from('menu')
       .whereRaw(where)
       .orderBy('id', 'desc')
       .limit(limit);
   }
 
-  async getReviewsForPostIds(foodIds) {
+  async getReviewsForMenuIds(menuIds) {
     let res = await knex
-      .select('id', 'content', 'food_id AS foodId')
+      .select('id', 'content', 'menu_id AS menuId')
       .from('review')
-      .whereIn('food_id', foodIds);
+      .whereIn('menu_id', menuIds);
 
-    return orderedFor(res, foodIds, 'foodId', false);
+    return orderedFor(res, menuIds, 'menuId', false);
   }
 
   getTotal() {
-    return knex('food')
+    return knex('menu')
       .countDistinct('id as count')
       .first();
   }
 
   getNextPageFlag(id) {
-    return knex('food')
+    return knex('menu')
       .countDistinct('id as count')
       .where('id', '<', id)
       .first();
   }
 
-  food(id) {
+  menu(id) {
     return knex
       .select('id', 'title', 'content')
-      .from('food')
+      .from('menu')
       .where('id', '=', id)
       .first();
   }
 
-  addPost({ title, content }) {
-    return knex('food')
+  addMenu({ title, content }) {
+    return knex('menu')
       .insert({ title, content })
       .returning('id');
   }
 
-  deletePost(id) {
-    return knex('food')
+  deleteMenu(id) {
+    return knex('menu')
       .where('id', '=', id)
       .del();
   }
 
-  editPost({ id, title, content }) {
-    return knex('food')
+  editMenu({ id, title, content }) {
+    return knex('menu')
       .where('id', '=', id)
       .update({
         title: title,
@@ -67,9 +67,9 @@ export default class Post {
       });
   }
 
-  addReview({ content, foodId }) {
+  addReview({ content, menuId }) {
     return knex('review')
-      .insert({ content, food_id: foodId })
+      .insert({ content, menu_id: menuId })
       .returning('id');
   }
 
