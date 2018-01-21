@@ -20,6 +20,7 @@ exports.up = function(knex, Promise) {
 				.inTable('tag')
 				.onDelete('CASCADE');
 			table.timestamps(false, true);
+			//table.primary(['menu_id', 'tag_id']);
 		})
 	]);
 };
