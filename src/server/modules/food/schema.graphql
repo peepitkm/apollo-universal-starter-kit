@@ -1,0 +1,113 @@
+# Food
+type Food {
+  id: Int!
+  title: String!
+  content: String!
+  reviews: [Review]
+}
+
+# Review
+type Review {
+  id: Int!
+  content: String!
+}
+
+# Edges for Foods
+type FoodEdges {
+  node: Food
+  cursor: Int
+}
+
+# PageInfo for Foods
+type FoodPageInfo {
+  endCursor: Int
+  hasNextPage: Boolean
+}
+
+# Foods relay-style pagination query
+type Foods {
+  totalCount: Int
+  edges: [FoodEdges]
+  pageInfo: FoodPageInfo
+}
+
+extend type Query {
+  # Foods pagination query
+  foods(limit: Int, after: Int): Foods
+  # Food
+  food(id: Int!): Food
+}
+
+extend type Mutation {
+  # Create new food
+  addFood(input: AddFoodInput!): Food
+  # Delete a food
+  deleteFood(id: Int!): Food
+  # Edit a food
+  editFood(input: EditFoodInput!): Food
+  # Add review to food
+  addReview(input: AddReviewInput!): Review
+  # Delete a review
+  deleteReview(input: DeleteReviewInput!): Review
+  # Edit a review
+  editReview(input: EditReviewInput!): Review
+}
+
+# Input for addFood Mutation
+input AddFoodInput {
+  title: String!
+  content: String!
+}
+
+# Input for editFood Mutation
+input EditFoodInput {
+  id: Int!
+  title: String!
+  content: String!
+}
+
+# Input for addReview Mutation
+input AddReviewInput {
+  content: String!
+  # Needed for reviewUpdated Subscription filter
+  foodId: Int!
+}
+
+# Input for editReview Mutation
+input DeleteReviewInput {
+  id: Int!
+  # Needed for reviewUpdated Subscription filter
+  foodId: Int!
+}
+
+# Input for deleteReview Mutation
+input EditReviewInput {
+  id: Int!
+  content: String!
+  # Needed for reviewUpdated Subscription filter
+  foodId: Int!
+}
+
+extend type Subscription {
+  # Subscription for when editing a food
+  foodUpdated(id: Int!): Food
+  # Subscription for food list
+  foodsUpdated(endCursor: Int!): UpdateFoodPayload
+  # Subscription for reviews
+  reviewUpdated(foodId: Int!): UpdateReviewPayload
+}
+
+# Payload for foodsUpdated Subscription
+type UpdateFoodPayload {
+  mutation: String!
+  id: Int!
+  node: Food
+}
+
+# Payload for reviewUpdated Subscription
+type UpdateReviewPayload {
+  mutation: String!
+  id: Int
+  foodId: Int!
+  node: Review
+}
