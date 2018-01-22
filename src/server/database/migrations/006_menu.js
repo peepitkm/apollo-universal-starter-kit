@@ -10,10 +10,10 @@ exports.up = function(knex, Promise) {
 		knex.schema.createTable('menu', table => {
 			table.increments();
 			table
-				.integer('user_id')
+				.integer('cook_id')
 				.unsigned()
-				.references('id')
-				.inTable('user')
+				.references('user_id')
+				.inTable('cook_profile')
 				.onDelete('CASCADE');
 			table
 				.integer('category_id')
@@ -34,6 +34,12 @@ exports.up = function(knex, Promise) {
 				.unsigned()
 				.references('id')
 				.inTable('menu')
+				.onDelete('CASCADE');
+			table
+				.integer('user_id')
+				.unsigned()
+				.references('id')
+				.inTable('user')
 				.onDelete('CASCADE');
 			table.string('content');
 			table.boolean('is_publish').defaultTo(true);
