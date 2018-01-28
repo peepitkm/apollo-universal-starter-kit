@@ -5,7 +5,7 @@ export default class Menu {
   menusPagination(limit, after) {
     let where = '';
     if (after > 0) {
-      where = id < ${after};
+      where = `id < ${after}`;
     }
 
     return knex
