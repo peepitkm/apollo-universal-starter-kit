@@ -46,7 +46,7 @@ export async function seed(knex, Promise) {
       point: 100,
       is_active: true,
       is_official: true,
-      last_activity_at: now(),
-      last_sale_at: now()
+      last_activity_at: '2018-01-28',
+      last_sale_at: '2018-01-28'
     });
 }
