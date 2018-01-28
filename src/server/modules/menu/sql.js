@@ -5,11 +5,11 @@ export default class Menu {
   menusPagination(limit, after) {
     let where = '';
     if (after > 0) {
-      where = `id < ${after}`;
+      where = id < ${after};
     }
 
     return knex
-      .select('id', 'title', 'content')
+      .select('id', 'cook_id', 'category_id', 'title', 'description', 'rating', 'free_items', 'sale_items', 'is_active')
       .from('menu')
       .whereRaw(where)
       .orderBy('id', 'desc')
@@ -40,7 +40,7 @@ export default class Menu {
 
   menu(id) {
     return knex
-      .select('id', 'title', 'content')
+      .select('id', 'cook_id', 'category_id', 'title', 'description', 'rating', 'free_items', 'sale_items', 'is_active')
       .from('menu')
       .where('id', '=', id)
       .first();
