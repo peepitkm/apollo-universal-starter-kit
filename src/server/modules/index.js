@@ -1,5 +1,6 @@
 import counter from './counter';
 import post from './post';
+import menu from './menu';
 import upload from './upload';
 import user from './user';
 import subscription from './subscription';
@@ -11,4 +12,4 @@ import './debug';
 
 import Feature from './connector';
 
-export default new Feature(counter, post, upload, user, subscription, contact, mailer, graphqlTypes, apolloEngine);
+export default new Feature(counter, post, menu, upload, user, subscription, contact, mailer, graphqlTypes, apolloEngine);

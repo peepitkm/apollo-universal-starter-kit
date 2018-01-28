@@ -1,6 +1,6 @@
 import DataLoader from 'dataloader';
 
-import Food from './sql';
+import Menu from './sql';
 import schema from './schema.graphql';
 import createResolvers from './resolvers';
 
@@ -10,12 +10,12 @@ export default new Feature({
   schema,
   createResolversFunc: createResolvers,
   createContextFunc: () => {
-    const food = new Food();
+    const menu = new Menu();
 
     return {
-      Food: food,
+      Menu: menu,
       loaders: {
-        getReviewsForPostIds: new DataLoader(post.getReviewsForFoodIds)
+        getReviewsForPostIds: new DataLoader(menu.getReviewsForMenuIds)
       }
     };
   }
