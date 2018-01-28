@@ -43,7 +43,7 @@ export async function seed(knex, Promise) {
       follows: 100,
       rating: 7.5,
       balance: 0.0,
-      point: 100
+      point: 100,
       is_active: true,
       is_official: true,
       last_activity_at: now(),
