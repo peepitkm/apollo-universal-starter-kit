@@ -1,20 +1,20 @@
 # Cook
 type Cook {
   id: Int!
-  name: String!,
-  about: String!,
-  province_id: Int!,
-  district_id: Int!,
-  subdistrict_id: Int!,
-  menus: Int!,
-  likes: Int!,
-  follows: Int!,
-  rating: Float!,
-  balance: Float!,
-  point: Int!,
-  is_active: Boolean!,
-  is_official: Boolean!,
-  last_activity_at: String!,
+  name: String!
+  about: String!
+  province_id: Int!
+  district_id: Int!
+  subdistrict_id: Int!
+  menus: Int!
+  likes: Int!
+  follows: Int!
+  rating: Float!
+  balance: Float!
+  point: Int!
+  is_active: Boolean!
+  is_official: Boolean!
+  last_activity_at: String!
   last_sale_at: String!
 }
 
