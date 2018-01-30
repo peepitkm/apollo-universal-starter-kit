@@ -21,8 +21,8 @@ type Cook {
 # Menu
 type Menu {
   id: Int!
-  cook: Cook!
-  category: Category!
+  cook: Cook
+  category: Category
   title: String!
   description: String!
   rating: Int!
@@ -86,8 +86,8 @@ extend type Mutation {
 
 # Input for addMenu Mutation
 input AddMenuInput {
-  cook: Cook!
-  category: Category!
+  cook: Cook
+  category: Category
   title: String!
   description: String!
 }
@@ -95,8 +95,8 @@ input AddMenuInput {
 # Input for editMenu Mutation
 input EditMenuInput {
   id: Int!
-  cook: Cook!
-  category: Category!
+  cook: Cook
+  category: Category
   title: String!
   description: String!
 }
