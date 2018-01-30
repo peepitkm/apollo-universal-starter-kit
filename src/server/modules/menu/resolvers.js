@@ -42,7 +42,7 @@ export default pubsub => ({
       return context.loaders.getReviewsForMenuIds.load(id);
     },
     cook({ cook_id }, args, context) {
-      return context.loaders.getCookForMenuIds.load(cook_id);
+      return context.loaders.getCookForMenuId.load(cook_id);
     },
     category({ category_id }, args, context) {
       return context.loaders.getCategoryForMenuId.load(category);
