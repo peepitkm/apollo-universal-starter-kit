@@ -86,8 +86,8 @@ extend type Mutation {
 
 # Input for addMenu Mutation
 input AddMenuInput {
-  cook: Cook
-  category: Category
+  cookId: Int!
+  categoryId: Int!
   title: String!
   description: String!
 }
@@ -95,8 +95,8 @@ input AddMenuInput {
 # Input for editMenu Mutation
 input EditMenuInput {
   id: Int!
-  cook: Cook
-  category: Category
+  cookId: Int!
+  categoryId: Int!
   title: String!
   description: String!
 }
