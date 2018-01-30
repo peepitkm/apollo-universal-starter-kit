@@ -15,7 +15,9 @@ export default new Feature({
     return {
       Menu: menu,
       loaders: {
-        getReviewsForMenuIds: new DataLoader(menu.getReviewsForMenuIds)
+        getReviewsForMenuIds: new DataLoader(menu.getReviewsForMenuIds),
+        getCookForMenuId: new DataLoader(menu.getCookForMenuId),
+        getCategoryForMenuId: new DataLoader(menu.getCategoryForMenuId)
       }
     };
   }
