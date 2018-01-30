@@ -25,6 +25,24 @@ export default class Menu {
     return orderedFor(res, menuIds, 'menuId', false);
   }
 
+  async getCookForMenuId(cookId) {
+    let res = await knex
+      .select('*')
+      .from('cook')
+      .whereIn('user_id', cookId);
+
+    return res;
+  }
+
+  async getCategoryForMenuId(categoryId) {
+    let res = await knex
+      .select('*')
+      .from('category')
+      .whereIn('id', categoryId);
+
+    return res;
+  }
+
   getTotal() {
     return knex('menu')
       .countDistinct('id as count')

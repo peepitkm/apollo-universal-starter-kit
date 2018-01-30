@@ -21,8 +21,8 @@ type Cook {
 # Menu
 type Menu {
   id: Int!
-  cook: Cook
-  category: Category
+  cook: Cook!
+  category: Category!
   title: String!
   description: String!
   rating: Int!

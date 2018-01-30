@@ -15,8 +15,7 @@ export default pubsub => ({
           cursor: menu.id,
           node: {
             id: menu.id,
-            title: menu.title,
-            content: menu.content
+            title: menu.title
           }
         });
       });
@@ -41,6 +40,9 @@ export default pubsub => ({
   Menu: {
     reviews({ id }, args, context) {
       return context.loaders.getReviewsForMenuIds.load(id);
+    }
+    cook({ id }, args, context) {
+      return context.loaders.getCookForMenuIds.load(id);
     }
   },
   Mutation: {
