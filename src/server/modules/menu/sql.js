@@ -27,8 +27,8 @@ export default class Menu {
 
   async getCookForMenuId(cookId) {
     let res = await knex
-      .select('*')
-      .from('cook')
+      .select('id', 'user_id', 'name', 'about', 'province_id', 'district_id', 'subdistrict_id', 'menus', 'likes', 'follows', 'rating', 'balance', 'point', 'is_active', 'is_official', 'last_activity_at', 'last_sale_at')
+      .from('cook_profile')
       .whereIn('user_id', cookId);
 
     return res;
@@ -36,7 +36,7 @@ export default class Menu {
 
   async getCategoryForMenuId(categoryId) {
     let res = await knex
-      .select('*')
+      .select('id', 'title', 'description')
       .from('category')
       .whereIn('id', categoryId);
 
