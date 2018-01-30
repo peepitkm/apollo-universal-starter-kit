@@ -39,7 +39,7 @@ export default class Menu {
       .from('menu_appointment')
       .whereIn('menu_id', menuId);
 
-    return orderedFor(res, menuIds, 'menu_id', false);
+    return orderedFor(res, menuId, 'menu_id', false);
   }
 
   async getPaymentsForMenuId(menuId) {
@@ -47,7 +47,7 @@ export default class Menu {
       .from('menu_payment')
       .whereIn('menu_id', menuId);
 
-    return orderedFor(res, menuIds, 'menu_id', false);
+    return orderedFor(res, menuId, 'menu_id', false);
   }
 
   async getPricesForMenuId(menuId) {
@@ -55,7 +55,7 @@ export default class Menu {
       .from('menu_price')
       .whereIn('menu_id', menuId);
 
-    return orderedFor(res, menuIds, 'menu_id', false);
+    return orderedFor(res, menuId, 'menu_id', false);
   }
 
   async getSchedulesForMenuId(menuId) {
@@ -63,7 +63,7 @@ export default class Menu {
       .from('menu_schedule')
       .whereIn('menu_id', menuId);
 
-    return orderedFor(res, menuIds, 'menu_id', false);
+    return orderedFor(res, menuId, 'menu_id', false);
   }
 
   async getTagsForMenuId(menuIds) {
@@ -75,7 +75,7 @@ export default class Menu {
       })
       .whereIn('menu_id', menuIds);
 
-    return orderedFor(res, menuIds, 'menuId', false);
+    return orderedFor(res, menuIds, 'menu_id', false);
   }
 
   async getReviewsForMenuIds(menuIds) {
