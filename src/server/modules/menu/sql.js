@@ -9,7 +9,7 @@ export default class Menu {
     }
 
     return knex
-      .select('id', 'cook_id', 'category_id', 'title', 'description', 'rating', 'free_items', 'sale_items', 'is_active')
+      .select('id', 'cook_id', 'category_id', 'description', 'rating', 'free_items', 'sale_items', 'is_active')
       .from('menu')
       .whereRaw(where)
       .orderBy('id', 'desc')
