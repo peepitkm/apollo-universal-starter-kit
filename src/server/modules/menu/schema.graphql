@@ -23,7 +23,7 @@ type Menu {
   id: Int!
   cook: Cook!
   category: Category!
-  title: String
+  title: String!
   description: String!
   rating: Int!
   freeItems: Int!

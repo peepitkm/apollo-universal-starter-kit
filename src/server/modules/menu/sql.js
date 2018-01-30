@@ -9,7 +9,7 @@ export default class Menu {
     }
 
     return knex
-      .select('id', 'cook_id', 'category_id', 'description', 'rating', 'free_items', 'sale_items', 'is_active')
+      .select('id', 'cook_id', 'category_id', 'title', 'description', 'rating', 'free_items', 'sale_items', 'is_active')
       .from('menu')
       .whereRaw(where)
       .orderBy('id', 'desc')
@@ -25,7 +25,7 @@ export default class Menu {
     return orderedFor(res, menuIds, 'menuId', false);
   }
 
-  async getCookForMenuId(cookId) {
+  async getCook(cookId) {
     let res = await knex
       .select('id', 'user_id', 'name', 'about', 'province_id', 'district_id', 'subdistrict_id', 'menus', 'likes', 'follows', 'rating', 'balance', 'point', 'is_active', 'is_official', 'last_activity_at', 'last_sale_at')
       .from('cook_profile')
@@ -34,7 +34,7 @@ export default class Menu {
     return res;
   }
 
-  async getCategoryForMenuId(categoryId) {
+  async getCategory(categoryId) {
     let res = await knex
       .select('id', 'title', 'description')
       .from('category')
