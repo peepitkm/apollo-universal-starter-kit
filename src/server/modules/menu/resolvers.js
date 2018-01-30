@@ -38,15 +38,30 @@ export default pubsub => ({
     }
   },
   Menu: {
-    reviews({ id }, args, context) {
-      return context.loaders.getReviewsForMenuIds.load(id);
-    },
     cook({ cook_id }, args, context) {
       return context.loaders.getCook.load(cook_id);
     },
     category({ category_id }, args, context) {
       return context.loaders.getCategory.load(category);
-    }
+    },
+    appointments({ id }, args, context) {
+      return context.loaders.getAppointmentsForMenuId.load(id);
+    },
+    payments({ id }, args, context) {
+      return context.loaders.getPaymentsForMenuId.load(id);
+    },
+    prices({ id }, args, context) {
+      return context.loaders.getPricesForMenuId.load(id);
+    },
+    schedules({ id }, args, context) {
+      return context.loaders.getSchedulesForMenuId.load(id);
+    },
+    tags({ id }, args, context) {
+      return context.loaders.getTagsForMenuId.load(id);
+    },
+    reviews({ id }, args, context) {
+      return context.loaders.getReviewsForMenuIds.load(id);
+    },
   },
   Mutation: {
     async addMenu(obj, { input }, context) {

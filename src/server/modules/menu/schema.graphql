@@ -25,15 +25,45 @@ type Menu {
   category: Category!
   title: String!
   description: String!
+  appointments: [MenuAppointment]!
+  payments: [MenuPayment]!
+  prices: [MenuPrice]!
+  schedules: [MenuSchedule]!
+  tags: [MenuTag]!
   rating: Int!
-  freeItems: Int!
-  saleItems: Int!
+  free_items: Int!
+  sale_items: Int!
   isActive: Boolean!
   reviews: [Review]
 }
 
 # Category
 type Category {
+  id: Int!
+}
+
+# Menu Appointment
+type MenuAppointment {
+  id: Int!
+}
+
+# Menu Payment
+type MenuPayment {
+  id: Int!
+}
+
+# Menu Price
+type MenuPrice {
+  id: Int!
+}
+
+# Menu Schedule
+type MenuSchedule {
+  id: Int!
+}
+
+# Menu Tag
+type MenuTag {
   id: Int!
 }
 

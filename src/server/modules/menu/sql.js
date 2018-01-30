@@ -16,15 +16,6 @@ export default class Menu {
       .limit(limit);
   }
 
-  async getReviewsForMenuIds(menuIds) {
-    let res = await knex
-      .select('id', 'content', 'menu_id AS menuId')
-      .from('review')
-      .whereIn('menu_id', menuIds);
-
-    return orderedFor(res, menuIds, 'menuId', false);
-  }
-
   async getCook(cookId) {
     let res = await knex
       .select('id', 'user_id', 'name', 'about', 'province_id', 'district_id', 'subdistrict_id', 'menus', 'likes', 'follows', 'rating', 'balance', 'point', 'is_active', 'is_official', 'last_activity_at', 'last_sale_at')
@@ -41,6 +32,59 @@ export default class Menu {
       .whereIn('id', categoryId);
 
     return res;
+  }
+
+  async getAppointmentsForMenuId(menuId) {
+    let res = await knex
+      .from('menu_appointment')
+      .whereIn('menu_id', menuId);
+
+    return orderedFor(res, menuIds, 'menu_id', false);
+  }
+
+  async getPaymentsForMenuId(menuId) {
+    let res = await knex
+      .from('menu_payment')
+      .whereIn('menu_id', menuId);
+
+    return orderedFor(res, menuIds, 'menu_id', false);
+  }
+
+  async getPricesForMenuId(menuId) {
+    let res = await knex
+      .from('menu_price')
+      .whereIn('menu_id', menuId);
+
+    return orderedFor(res, menuIds, 'menu_id', false);
+  }
+
+  async getSchedulesForMenuId(menuId) {
+    let res = await knex
+      .from('menu_schedule')
+      .whereIn('menu_id', menuId);
+
+    return orderedFor(res, menuIds, 'menu_id', false);
+  }
+
+  async getTagsForMenuId(menuIds) {
+    let res = await knex
+      .select('id', 'name')
+      .from('menu_tag')
+      .join('menu', function() {
+        this.on('menu.id', '=', 'menu_tag.tag_id')
+      })
+      .whereIn('menu_id', menuIds);
+
+    return orderedFor(res, menuIds, 'menuId', false);
+  }
+
+  async getReviewsForMenuIds(menuIds) {
+    let res = await knex
+      .select('id', 'content', 'menu_id AS menuId')
+      .from('review')
+      .whereIn('menu_id', menuIds);
+
+    return orderedFor(res, menuIds, 'menuId', false);
   }
 
   getTotal() {
