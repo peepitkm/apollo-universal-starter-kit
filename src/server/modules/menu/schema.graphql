@@ -45,26 +45,41 @@ type Category {
 # Menu Appointment
 type MenuAppointment {
   id: Int!
+  name: String!
+  description: String!
+  time: Time!
+  province_id: Int!
+  district_id: Int!
+  subdistrict_id: Int!
+  latitude: String!
+  longitude: String!
 }
 
 # Menu Payment
 type MenuPayment {
   id: Int!
+  type: String!
+  object: String!
 }
 
 # Menu Price
 type MenuPrice {
   id: Int!
+  unit_id: Int!
+  price: Float!
 }
 
 # Menu Schedule
 type MenuSchedule {
   id: Int!
+  type: String!
+  schedule: String!
 }
 
 # Menu Tag
 type MenuTag {
   id: Int!
+  name: Int!
 }
 
 # Review
@@ -116,17 +131,53 @@ extend type Mutation {
 
 # Input for addMenu Mutation
 input AddMenuInput {
-  cookId: Int!
-  categoryId: Int!
+  cook_id: Int!
+  category_id: Int!
   title: String!
   description: String!
+  appointments: [MenuAppointmentInput]!
+  payments: [MenuPaymentInput]!
+  prices: [MenuPriceInput]!
+  schedules: [MenuScheduleInput]!
+  tags: [MenuTagInput]!
+}
+
+input MenuAppointmentInput {
+  name: String!
+  description: String!
+  time: Time!
+  province_id: Int!
+  district_id: Int
+  subdistrict_id: Int
+  latitude: String
+  longitude: String
+}
+
+input MenuPaymentInput {
+  type: String!
+  object: String!
+}
+
+input MenuPriceInput {
+  unit_id: Int!
+  price: Float!
+}
+
+input MenuScheduleInput {
+  type: String!
+  schedule: String!
+}
+
+input MenuTagInput {
+  id: Int!
+  name: Int!
 }
 
 # Input for editMenu Mutation
 input EditMenuInput {
   id: Int!
   cookId: Int!
-  categoryId: Int!
+  category_id: Int!
   title: String!
   description: String!
 }

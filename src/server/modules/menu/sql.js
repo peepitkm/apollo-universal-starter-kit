@@ -108,10 +108,20 @@ export default class Menu {
       .first();
   }
 
-  addMenu({ title, content }) {
-    return knex('menu')
-      .insert({ title, content })
+  addMenu(menu) {
+    let id = knex('menu')
+      .insert({ menu.cook_id, menu.title, menu.description })
       .returning('id');
+
+    if(id){
+      knex('menu_appointment').insert(menu.appointments);
+      knex('menu_payment').insert(menu.payments);
+      knex('menu_price').insert(menu.prices);
+      knex('menu_schedule').insert(menu.schedules);
+      knex('menu_tag').insert(menu.tags);
+    }
+
+    return id;
   }
 
   deleteMenu(id) {
@@ -120,12 +130,12 @@ export default class Menu {
       .del();
   }
 
-  editMenu({ id, title, content }) {
+  editMenu(menu) {
     return knex('menu')
-      .where('id', '=', id)
+      .where('id', '=', menu.id)
       .update({
-        title: title,
-        content: content
+        title: menu.title,
+        description: menu.description
       });
   }
 
