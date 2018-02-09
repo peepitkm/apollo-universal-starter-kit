@@ -126,8 +126,9 @@ export default class Menu {
 
   addMenu(menu) {
     console.log(menu);
+    console.log('---');
     let id = knex('menu')
-      .insert({ menu })
+      .insert(menu)
       .returning('id');
 
     return id;
