@@ -118,31 +118,31 @@ export default class Menu {
           appointments.map(function(object, index){
             object.menu_id = response[0];
           });
-          await knex('menu_appointment').insert(appointments);
+          knex('menu_appointment').insert(appointments);
         }
         if(payments != null){
           payments.map(function(object, index){
             object.menu_id = response[0];
           });
-          await knex('menu_payment').insert(payments);
+          knex('menu_payment').insert(payments);
         }
         if(prices != null){
           prices.map(function(object, index){
             object.menu_id = response[0];
           });
-          await knex('menu_price').insert(prices);
+          knex('menu_price').insert(prices);
         }
         if(schedules != null){
           schedules.map(function(object, index){
             object.menu_id = response[0];
           });
-          await knex('menu_schedule').insert(schedules);
+          knex('menu_schedule').insert(schedules);
         }
         if(tags != null){
           tags.map(function(object, index){
             object.menu_id = response[0];
           });
-          await knex('menu_tag').insert(tags);
+          knex('menu_tag').insert(tags);
         }
         return response;
       });
