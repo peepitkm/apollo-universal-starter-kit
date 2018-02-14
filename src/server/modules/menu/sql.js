@@ -137,8 +137,14 @@ export default class Menu {
           schedules.map(function(object, index){
             object.menu_id = response[0];
           });
-          return knex('menu_schedule').insert(schedules);
+          knex('menu_schedule').insert(schedules);
         }
+        // if(prices != null){
+        //   prices.map(function(object, index){
+        //     object.menu_id = response[0];
+        //   });
+        //   knex('menu_price').insert(prices);
+        // }
         // if(tags != null){
         //   tags.map(function(object, index){
         //     object.menu_id = response[0];
