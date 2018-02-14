@@ -110,7 +110,7 @@ export default class Menu {
   }
 
   addMenu({cook_id, title, description, appointments, payments, prices, schedules, tags}) {
-    return id = knex('menu')
+    return knex('menu')
       .insert({ cook_id, title, description })
       .returning('id')
       .then(function (response) {
