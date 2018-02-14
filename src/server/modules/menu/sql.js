@@ -114,25 +114,42 @@ export default class Menu {
       .insert({ cook_id, title, description })
       .returning('id')
       .then(function(response){
-        // if(appointments != null){
-        //   appointments.map(function(object, index){
-        //     object.menu_id = response[0];
-        //   });
-
-        //   knex('menu_appointment').insert(appointments);
-        // }
-        // if(payments != null){
-        //   payments.map(function(object, index){
-        //     object.menu_id = response[0];
-        //   });
-        //   knex('menu_payment').insert(payments);
-        // }
-        // if(prices != null){
-        //   prices.map(function(object, index){
-        //     object.menu_id = response[0];
-        //   });
-        //   knex('menu_price').insert(prices);
-        // }
+        if(appointments != null){
+          appointments.map(function(object, index){
+            object.menu_id = response[0];
+          });
+          return knex('menu_appointment').insert(appointments).then(function(){
+            return response;
+          });
+        }else{
+          return response;
+        }
+      })
+      .then(function(response){
+        if(payments != null){
+          payments.map(function(object, index){
+            object.menu_id = response[0];
+          });
+          return knex('menu_payment').insert(payments).then(function(){
+            return response;
+          });
+        }else{
+          return response;
+        }
+      })
+      .then(function(response){
+        if(prices != null){
+          prices.map(function(object, index){
+            object.menu_id = response[0];
+          });
+          return knex('menu_price').insert(prices).then(function(){
+            return response;
+          });
+        }else{
+          return response;
+        }
+      })
+      .then(function(response){
         if(schedules != null){
           schedules.map(function(object, index){
             object.menu_id = response[0];
@@ -140,20 +157,33 @@ export default class Menu {
           return knex('menu_schedule').insert(schedules).then(function(){
             return response;
           });
+        }else{
+          return response;
         }
-        // if(prices != null){
-        //   prices.map(function(object, index){
-        //     object.menu_id = response[0];
-        //   });
-        //   knex('menu_price').insert(prices);
-        // }
-        // if(tags != null){
-        //   tags.map(function(object, index){
-        //     object.menu_id = response[0];
-        //   });
-        //   knex('menu_tag').insert(tags);
-        // }
-        
+      })
+      .then(function(response){
+        if(prices != null){
+          prices.map(function(object, index){
+            object.menu_id = response[0];
+          });
+          return knex('menu_price').insert(prices).then(function(){
+            return response;
+          });
+        }else{
+          return response;
+        }
+      })
+      .then(function(response){
+        if(tags != null){
+          tags.map(function(object, index){
+            object.menu_id = response[0];
+          });
+          return knex('menu_tag').insert(tags).then(function(){
+            return response;
+          });
+        }else{
+          return response;
+        }
       });
   }
 
