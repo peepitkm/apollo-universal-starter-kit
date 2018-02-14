@@ -109,16 +109,21 @@ export default class Menu {
   }
 
   addMenu({cook_id, title, description, appointments, payments, prices, schedules, tags}) {
-    let id = knex('menu')
+    let id = await knex('menu')
       .insert({ cook_id, title, description })
       .returning('id');
 
     if(id){
-      knex('menu_appointment').insert(appointments);
-      knex('menu_payment').insert(payments);
-      knex('menu_price').insert(prices);
-      knex('menu_schedule').insert(schedules);
-      knex('menu_tag').insert(tags);
+      console.log(appointments);
+      console.log(payments);
+      console.log(prices);
+      console.log(schedules);
+      console.log(tags);
+      await knex('menu_appointment').insert(appointments);
+      await knex('menu_payment').insert(payments);
+      await knex('menu_price').insert(prices);
+      await knex('menu_schedule').insert(schedules);
+      await knex('menu_tag').insert(tags);
     }
 
     return id;
