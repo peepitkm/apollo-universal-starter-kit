@@ -23,10 +23,10 @@ exports.up = function(knex, Promise) {
 				.onDelete('CASCADE');
 			table.string('title');
 			table.string('description');
-			table.decimal('rating', 3, 2);
+			table.decimal('rating', 3, 2).defaultTo(0);
 			//
-			table.integer('free_items').unsigned();
-			table.integer('sale_items').unsigned();
+			table.integer('free_items').unsigned().defaultTo(0);
+			table.integer('sale_items').unsigned().defaultTo(0);
 			//
 			table.boolean('is_active').defaultTo(true);
 			table.timestamps(false, true);

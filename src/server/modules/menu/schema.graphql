@@ -14,8 +14,8 @@ type Cook {
   point: Int!
   is_active: Boolean!
   is_official: Boolean!
-  last_activity_at: String!
-  last_sale_at: String!
+  last_activity_at: String
+  last_sale_at: String
 }
 
 # Menu
@@ -33,7 +33,7 @@ type Menu {
   rating: Int!
   free_items: Int!
   sale_items: Int!
-  isActive: Boolean!
+  is_active: Boolean!
   reviews: [Review]
 }
 

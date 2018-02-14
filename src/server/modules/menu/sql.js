@@ -108,31 +108,31 @@ export default class Menu {
       .first();
   }
 
-  // addMenu({cook_id, title, description, appointments, payments, prices, schedules, tags}) {
-  //   let id = knex('menu')
-  //     .insert({ cook_id, title, description })
-  //     .returning('id');
-
-  //   if(id){
-  //     knex('menu_appointment').insert(appointments);
-  //     knex('menu_payment').insert(payments);
-  //     knex('menu_price').insert(prices);
-  //     knex('menu_schedule').insert(schedules);
-  //     knex('menu_tag').insert(tags);
-  //   }
-
-  //   return id;
-  // }
-
-  addMenu(menu) {
-    console.log(menu);
-    console.log('---');
+  addMenu({cook_id, title, description, appointments, payments, prices, schedules, tags}) {
     let id = knex('menu')
-      .insert(menu)
+      .insert({ cook_id, title, description })
       .returning('id');
+
+    if(id){
+      knex('menu_appointment').insert(appointments);
+      knex('menu_payment').insert(payments);
+      knex('menu_price').insert(prices);
+      knex('menu_schedule').insert(schedules);
+      knex('menu_tag').insert(tags);
+    }
 
     return id;
   }
+
+  // addMenu(menu) {
+  //   console.log(menu);
+  //   console.log('---');
+  //   let id = knex('menu')
+  //     .insert(menu)
+  //     .returning('id');
+
+  //   return id;
+  // }
 
   deleteMenu(id) {
     return knex('menu')

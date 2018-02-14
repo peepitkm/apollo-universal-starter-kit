@@ -45,13 +45,13 @@ exports.up = function(knex, Promise) {
       table.integer('district_id').unsigned();
       table.integer('subdistrict_id').unsigned();
       //
-      table.integer('menus').unsigned();
-      table.integer('likes').unsigned();
-      table.integer('follows').unsigned();
+      table.integer('menus').unsigned().defaultTo(0);
+      table.integer('likes').unsigned().defaultTo(0);
+      table.integer('follows').unsigned().defaultTo(0);
       //
-      table.decimal('rating', 3, 2).unsigned();
-      table.decimal('balance', 3, 2).unsigned();
-      table.integer('point').unsigned();
+      table.decimal('rating', 3, 2).unsigned().defaultTo(0);
+      table.decimal('balance', 3, 2).unsigned().defaultTo(0);
+      table.integer('point').unsigned().defaultTo(0);
       //
       table.boolean('is_active').defaultTo(false);
       table.boolean('is_official').defaultTo(false);
