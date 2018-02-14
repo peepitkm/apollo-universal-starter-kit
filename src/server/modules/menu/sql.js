@@ -114,36 +114,37 @@ export default class Menu {
       .insert({ cook_id, title, description })
       .returning('id')
       .then(function(response){
-        if(appointments != null){
-          appointments.map(function(object, index){
-            object.menu_id = response[0];
-          });
-          knex('menu_appointment').insert(appointments);
-        }
-        if(payments != null){
-          payments.map(function(object, index){
-            object.menu_id = response[0];
-          });
-          knex('menu_payment').insert(payments);
-        }
-        if(prices != null){
-          prices.map(function(object, index){
-            object.menu_id = response[0];
-          });
-          knex('menu_price').insert(prices);
-        }
+        // if(appointments != null){
+        //   appointments.map(function(object, index){
+        //     object.menu_id = response[0];
+        //   });
+
+        //   knex('menu_appointment').insert(appointments);
+        // }
+        // if(payments != null){
+        //   payments.map(function(object, index){
+        //     object.menu_id = response[0];
+        //   });
+        //   knex('menu_payment').insert(payments);
+        // }
+        // if(prices != null){
+        //   prices.map(function(object, index){
+        //     object.menu_id = response[0];
+        //   });
+        //   knex('menu_price').insert(prices);
+        // }
         if(schedules != null){
           schedules.map(function(object, index){
             object.menu_id = response[0];
           });
-          knex('menu_schedule').insert(schedules);
+          return knex('menu_schedule').insert(schedules);
         }
-        if(tags != null){
-          tags.map(function(object, index){
-            object.menu_id = response[0];
-          });
-          knex('menu_tag').insert(tags);
-        }
+        // if(tags != null){
+        //   tags.map(function(object, index){
+        //     object.menu_id = response[0];
+        //   });
+        //   knex('menu_tag').insert(tags);
+        // }
         return response;
       });
   }
