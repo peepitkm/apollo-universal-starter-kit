@@ -1,5 +1,6 @@
 import { orderedFor } from '../../sql/helpers';
 import knex from '../../sql/connector';
+import _ from 'lodash';
 
 export default class Menu {
   menusPagination(limit, after) {
@@ -114,11 +115,11 @@ export default class Menu {
       .returning('id');
 
     if(id){
-      console.log(appointments);
-      console.log(payments);
-      console.log(prices);
-      console.log(schedules);
-      console.log(tags);
+      console.log(typeof appointments);
+      console.log(typeof payments);
+      console.log(typeof prices);
+      console.log(typeof schedules);
+      console.log(typeof tags);
       knex('menu_appointment').insert(appointments);
       knex('menu_payment').insert(payments);
       knex('menu_price').insert(prices);
