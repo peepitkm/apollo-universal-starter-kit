@@ -125,6 +125,11 @@ export default class Menu {
       if(prices != null) prices.map(function(object, index){ object.menu_id = id; });
       if(schedules != null) schedules.map(function(object, index){ object.menu_id = id; });
       if(tags != null) tags.map(function(object, index){ object.menu_id = id; });
+      console.log(appointments);
+      console.log(payments);
+      console.log(prices);
+      console.log(schedules);
+      console.log(tags);
       knex('menu_appointment').insert(appointments);
       knex('menu_payment').insert(payments);
       knex('menu_price').insert(prices);
