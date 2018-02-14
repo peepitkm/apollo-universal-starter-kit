@@ -115,11 +115,13 @@ export default class Menu {
       .returning('id');
 
     if(id){
-      console.log(typeof appointments);
-      console.log(typeof payments);
-      console.log(typeof prices);
-      console.log(typeof schedules);
-      console.log(typeof tags);
+      console.log(appointments);
+      console.log(payments);
+      console.log(prices);
+      console.log(schedules);
+      console.log(schedules[0]);
+      console.log(schedules[0].type);
+      console.log(tags);
       knex('menu_appointment').insert(appointments);
       knex('menu_payment').insert(payments);
       knex('menu_price').insert(prices);
