@@ -113,27 +113,27 @@ export default class Menu {
     return knex('menu')
       .insert({ cook_id, title, description })
       .returning('id')
-      .then(function (response) {
-        console.log(appointments);
-        console.log(payments);
-        console.log(prices);
+      .then(function(response){
+        //console.log(appointments);
+        //console.log(payments);
+        //console.log(prices);
         console.log(schedules);
-        console.log(tags);
-        if(appointments != null) appointments.map(function(object, index){ object.menu_id = response[0]; });
-        if(payments != null) payments.map(function(object, index){ object.menu_id = response[0]; });
-        if(prices != null) prices.map(function(object, index){ object.menu_id = response[0]; });
+        //console.log(tags);
+        //if(appointments != null) appointments.map(function(object, index){ object.menu_id = response[0]; });
+        //if(payments != null) payments.map(function(object, index){ object.menu_id = response[0]; });
+        //if(prices != null) prices.map(function(object, index){ object.menu_id = response[0]; });
         if(schedules != null) schedules.map(function(object, index){ object.menu_id = response[0]; });
-        if(tags != null) tags.map(function(object, index){ object.menu_id = response[0]; });
-        console.log(appointments);
-        console.log(payments);
-        console.log(prices);
+        //if(tags != null) tags.map(function(object, index){ object.menu_id = response[0]; });
+        //console.log(appointments);
+        //console.log(payments);
+        //console.log(prices);
         console.log(schedules);
-        console.log(tags);
-        knex('menu_appointment').insert(appointments);
-        knex('menu_payment').insert(payments);
-        knex('menu_price').insert(prices);
-        knex('menu_schedule').insert(schedules);
-        knex('menu_tag').insert(tags);
+        //console.log(tags);
+        //knex('menu_appointment').insert(appointments);
+        //knex('menu_payment').insert(payments);
+        //knex('menu_price').insert(prices);
+        return knex('menu_schedule').insert(schedules);
+        //knex('menu_tag').insert(tags);
       });
   }
 
