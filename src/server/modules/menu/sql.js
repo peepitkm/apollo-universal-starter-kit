@@ -119,9 +119,22 @@ export default class Menu {
       console.log(payments);
       console.log(prices);
       console.log(schedules);
-      console.log(schedules[0]);
-      console.log(schedules[0].type);
       console.log(tags);
+      appointments.map(function(object, index){
+        object.menu_id = id;
+      });
+      payments.map(function(object, index){
+        object.menu_id = id;
+      });
+      prices.map(function(object, index){
+        object.menu_id = id;
+      });
+      schedules.map(function(object, index){
+        object.menu_id = id;
+      });
+      tags.map(function(object, index){
+        object.menu_id = id;
+      });
       knex('menu_appointment').insert(appointments);
       knex('menu_payment').insert(payments);
       knex('menu_price').insert(prices);
