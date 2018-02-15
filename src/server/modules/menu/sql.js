@@ -226,15 +226,15 @@ export default class Menu {
       .where('id', '=', id)
       .update({ cook_id, title, description });
 
-    schedules.forEach(function(schedule){
+    await schedules.forEach(async function(schedule){
       if(schedule.id == null){
-        knex('menu_schedule').insert({
+        await knex('menu_schedule').insert({
           menu_id: schedule.menu_id,
           type: schedule.type,
           schedule: schedule.schedule
         });
       }else{
-        knex('menu_schedule').where('id', '=', id).update({
+        await knex('menu_schedule').where('id', '=', id).update({
           schedule: schedule.schedule
         });
       }
