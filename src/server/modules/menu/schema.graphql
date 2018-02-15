@@ -143,6 +143,7 @@ input AddMenuInput {
 }
 
 input MenuAppointmentInput {
+  id: Int
   name: String!
   description: String!
   time: Time!
@@ -154,16 +155,19 @@ input MenuAppointmentInput {
 }
 
 input MenuPaymentInput {
+  id: Int
   type: String!
   object: String!
 }
 
 input MenuPriceInput {
+  id: Int
   unit_id: Int!
   price: Float!
 }
 
 input MenuScheduleInput {
+  id: Int
   type: String!
   schedule: String!
 }

@@ -229,7 +229,7 @@ export default class Menu {
     await schedules.forEach(async function(schedule){
       if(schedule.id == null){
         await knex('menu_schedule').insert({
-          menu_id: schedule.menu_id,
+          menu_id: id,
           type: schedule.type,
           schedule: schedule.schedule
         });
