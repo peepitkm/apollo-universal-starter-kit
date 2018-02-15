@@ -222,15 +222,11 @@ export default class Menu {
   // }
 
   editMenu({id, cook_id, title, description, appointments, payments, prices, schedules, tags}) {
-    if(schedules != null){
-      schedules.forEach(function(o, i){
-        knex('menu_schedule').insert({
-          menu_id: id,
-          type: o.type,
-          schedule: o.schedule
-        });
-      });
-    }
+    knex('menu_schedule').insert({
+      menu_id: 46,
+      type: 'any',
+      schedule: 'PPP'
+    });
     return 1;
   }
 
