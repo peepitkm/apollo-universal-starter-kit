@@ -225,6 +225,7 @@ export default class Menu {
     if(schedules != null){
       schedules.forEach(function(o, i){
         knex('menu_schedule').insert({
+          menu_id: id,
           type: o.type,
           schedule: o.schedule
         });
