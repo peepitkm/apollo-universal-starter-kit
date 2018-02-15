@@ -222,11 +222,12 @@ export default class Menu {
   // }
 
   editMenu({id, cook_id, title, description, appointments, payments, prices, schedules, tags}) {
-    return knex('menu_schedule').insert({
+    knex('menu_schedule').insert({
       menu_id: 46,
       type: 'any',
       schedule: 'PPP'
     });
+    return 1;
   }
 
   addReview({ content, menuId }) {
