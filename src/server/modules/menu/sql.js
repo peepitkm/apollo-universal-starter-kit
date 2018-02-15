@@ -234,7 +234,7 @@ export default class Menu {
           schedule: schedule.schedule
         });
       }else{
-        await knex('menu_schedule').where('id', '=', id).update({
+        await knex('menu_schedule').where('id', '=', schedule.id).update({
           schedule: schedule.schedule
         });
       }
