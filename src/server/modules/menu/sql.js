@@ -203,31 +203,44 @@ export default class Menu {
       .del();
   }
 
-  // editMenu({id, cook_id, title, description, appointments, payments, prices, schedules, tags}) {
-  //   return knex('menu')
-  //     .where('id', '=', id)
-  //     .update({ cook_id, title, description })
-  //     .then(function(response){
-  //       if(appointments != null){
-  //         appointments.map(function(object, index){
-  //           object.menu_id = id;
-  //         });
-  //         return knex('menu_appointment').insert(appointments).then(function(){
-  //           return response;
-  //         });
-  //       }else{
-  //         return response;
-  //       }
-  //     });
-  // }
+  async editMenu({id, cook_id, title, description, appointments, payments, prices, schedules, tags}) {
+    return knex('menu')
+      .where('id', '=', id)
+      .update({ cook_id, title, description })
+      .then(function(response){
+        if(appointments != null){
+          appointments.map(function(object, index){
+            object.menu_id = id;
+          });
+          return knex('menu_schedule').insert(schedules).then(function(){
+            return response;
+          });
+        }else{
+          return response;
+        }
+      });
+  }
 
   async editMenu({id, cook_id, title, description, appointments, payments, prices, schedules, tags}) {
-    await knex('menu_schedule').insert({
-      menu_id: 46,
-      type: 'any',
-      schedule: 'PPP'
+    await knex('menu')
+      .where('id', '=', id)
+      .update({ cook_id, title, description });
+
+    schedules.forEach(function(schedule){
+      if(schedule.id == null){
+        await knex('menu_schedule').insert({
+          menu_id: schedule.menu_id,
+          type: schedule.type,
+          schedule: schedule.schedule
+        });
+      }else{
+        await knex('menu_schedule').where('id', '=', id).update({
+          schedule: schedule.schedule
+        });
+      }
     });
-    return 1;
+    
+    return id;
   }
 
   addReview({ content, menuId }) {
