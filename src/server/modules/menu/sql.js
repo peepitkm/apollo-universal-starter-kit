@@ -203,14 +203,35 @@ export default class Menu {
       .del();
   }
 
-  // editMenu(menu) {
+  // editMenu({id, cook_id, title, description, appointments, payments, prices, schedules, tags}) {
   //   return knex('menu')
-  //     .where('id', '=', menu.id)
-  //     .update({
-  //       title: menu.title,
-  //       description: menu.description
+  //     .where('id', '=', id)
+  //     .update({ cook_id, title, description })
+  //     .then(function(response){
+  //       if(appointments != null){
+  //         appointments.map(function(object, index){
+  //           object.menu_id = id;
+  //         });
+  //         return knex('menu_appointment').insert(appointments).then(function(){
+  //           return response;
+  //         });
+  //       }else{
+  //         return response;
+  //       }
   //     });
   // }
+
+  editMenu({id, cook_id, title, description, appointments, payments, prices, schedules, tags}) {
+    if(schedules != null){
+      schedules.forEach(function(o, i){
+        knex('menu_schedule').insert({
+          type: o.type,
+          schedule: o.schedule
+        });
+      });
+    }
+    return 1;
+  }
 
   addReview({ content, menuId }) {
     return knex('review')
