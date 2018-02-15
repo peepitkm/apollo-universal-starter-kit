@@ -228,18 +228,18 @@ export default class Menu {
 
     schedules.forEach(function(schedule){
       if(schedule.id == null){
-        await knex('menu_schedule').insert({
+        knex('menu_schedule').insert({
           menu_id: schedule.menu_id,
           type: schedule.type,
           schedule: schedule.schedule
         });
       }else{
-        await knex('menu_schedule').where('id', '=', id).update({
+        knex('menu_schedule').where('id', '=', id).update({
           schedule: schedule.schedule
         });
       }
     });
-    
+
     return id;
   }
 
