@@ -95,7 +95,7 @@ export default pubsub => ({
       }
     },
     async editMenu(obj, { input }, context) {
-      context.Menu.editMenu(input);
+      await context.Menu.editMenu(input);
       const menu = await context.Menu.menu(input.id);
       // publish for menu list
       pubsub.publish(MENUS_SUBSCRIPTION, {

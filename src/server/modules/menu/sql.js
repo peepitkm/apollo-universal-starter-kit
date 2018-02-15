@@ -227,6 +227,13 @@ export default class Menu {
       type: 'any',
       schedule: 'PPP'
     });
+
+    console.log( knex('menu_schedule').insert({
+      menu_id: 46,
+      type: 'any',
+      schedule: 'PPP'
+    }));
+    
     return 1;
   }
 
